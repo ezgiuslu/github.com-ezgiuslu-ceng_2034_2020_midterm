@@ -1,0 +1,24 @@
+import os,sys, request, threading
+#1
+print(os.getpid())
+
+#2
+print(os.getloadavg())
+
+print(sys.platform)
+if(sys.platform == "linux"):
+  print("load average is",os.getloadavg)
+
+#4
+array=["https://api.github.com","http://bilgisayar.mu.edu.tr/","https://www.python.org/","http://akrepnalan.com/ceng2034","https://github.com/caesarsalad/wow"]
+def request(url):
+          res=request.get(url)
+          res_code =res.status_code
+
+          if(200<=res_code<=300):
+                   print(url +" URL is valid")
+          else:
+                   print(url +" URL is invalid")
+for i in range(0,5):
+        thread1 =threading.Thread(target=request,args=(array[i],))
+        thread1.start()
